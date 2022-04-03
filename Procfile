@@ -1,0 +1,1 @@
+worker: python botted.py
