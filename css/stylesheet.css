@@ -17,7 +17,7 @@ body {
  .form {
      text-align: center;
 }
- input[name-uname] {
+ input[name=uname] {
      height: 30px;
      width: 300px;
      background: white;
