@@ -19,7 +19,7 @@
 		<input type="submit" value="Submit">
 	</form>
 	<?php
-		$output = passthru("python botted.py treep");
+		$output = passthru("python botted.py poopy");
 		echo $output;
 	?>
 </body>
