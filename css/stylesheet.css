@@ -9,21 +9,22 @@ body {
      z-index: 100;
 }
  .content {
-     margin-top: 70px;
-     width: 100%;
+     margin-top: 68px;
      height: auto;
+     width: 100%;
      text-align: center;
 }
- #form {
+ .form {
      text-align: center;
 }
- #uname {
-     background: white;
-     width: 300px;
+ input[name-uname] {
      height: 30px;
+     width: 300px;
+     background: white;
+     padding: 4px 4px;
      border-style: none;
 }
- input[type=button], input[type=submit], input[type=reset] {
+ input[name=submit] {
      background-color: white;
      border: none;
      color: black;
