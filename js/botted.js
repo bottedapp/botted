@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 	
 	var $username;
-	jQuery('.submit').on('input', function() {
+	 $('.submit').click(function() {
         $username = $( ".uname" ).val();
         query();
     	});
