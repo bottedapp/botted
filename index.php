@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
-	<div class="top"><img src="/images/botted.png" width="200px"></div>
+	<div class="top"><img src="/images/botted.png" width="140px"></div>
 	<div class="content"><img src="/images/bot.png" width="200px" align="center"></div>
 	<form action="/action_page.php" id="form">
 		<input type="text" id="uname" name="uname" placeholder="Username"><br><br>
