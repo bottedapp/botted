@@ -10,5 +10,8 @@ Reddit = praw.Reddit(
     user_agent="botted 0.0.1",
 )
 username = sys.argv[1]
+print(username,"\n")
+i = 1
 for item in Reddit.redditor(username).comments.new(limit=10):
-    print(item.body)
+    print(f"comment {i}:", item.body, "\n")
+    i += 1
