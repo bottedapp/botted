@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 	
 	var $username;
 	jQuery('.submit').on('input', function() {
-        $username = $( "uname" ).val();
+        $username = $( ".uname" ).val();
         query();
     	});
 
