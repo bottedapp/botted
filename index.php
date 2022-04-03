@@ -1,4 +1,6 @@
 <?php
+	$output = passthru('python botted.py idiotic');
+	 echo $output;
 ?>
 <!doctype html>
 <html lang="en">
