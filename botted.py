@@ -9,7 +9,7 @@ Reddit = praw.Reddit(
     client_secret="6zov1gDWJ8Ij60yH3L7q6N_LnPUZHA",
     user_agent="botted 0.0.1",
 )
-username = sys.argv[1]
+username = str(sys.argv[1])
 for item in Reddit.redditor(username).comments.new(limit=10):
     print(item.body)
 
@@ -34,3 +34,4 @@ try:
     print(sum(TotalSimilarities) / len(TotalSimilarities))
 except ZeroDivisionError:
     print(0.0)
+    print(username)
