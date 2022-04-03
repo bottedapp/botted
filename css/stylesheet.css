@@ -1,34 +1,34 @@
 body {
-    margin: 0 auto;
-     background-color: eb502f;
+     margin: 0 auto;
+     background-color: #eb502f;
 }
  .top {
-    height: 70px;
+     height: 70px;
      width: 100%;
      background-color: white;
      z-index: 100;
 }
  .content {
-    margin-top: 70px;
+     margin-top: 70px;
      width: 100%;
      height: auto;
      text-align: center;
 }
  input[type=text]:focus {
-    background-color: lightblue;
+     background-color: lightblue;
 }
  #form {
-    text-align: center;
+     text-align: center;
 }
  #uname {
-    background: #FFFFFF;
-    padding: 20px;
-    width: 300px;
+     background: white;
+     padding: 20px;
+     width: 300px;
      height: 30px;
      border-style: none;
 }
  input[type=button], input[type=submit], input[type=reset] {
-     background-color: #FFFFFF;
+     background-color: white;
      border: none;
      color: black;
      padding: 16px 32px;
