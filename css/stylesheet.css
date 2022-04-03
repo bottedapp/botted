@@ -19,9 +19,9 @@ body {
 }
  input[name=uname] {
      height: 30px;
-     width: 300px;
+     width: 200px;
      background: white;
-     padding: 4px 4px;
+     padding: 4px 15px;
      border-style: none;
 }
  input[name=submit] {
