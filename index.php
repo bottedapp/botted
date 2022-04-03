@@ -1,10 +1,3 @@
-<?php
-$output = "";
-if(isset($_POST['submit'])){ //check if form was submitted
-  $input = $_POST['uname']; //get input text
-  $output = passthru("python botted.py " . $input);
-}    
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,6 +14,8 @@ if(isset($_POST['submit'])){ //check if form was submitted
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 	<link rel="stylesheet" href="/css/stylesheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+	<script src="/js/botted.js" defer></script> 
 </head>
 <body>
 	<div class="top"><img src="/images/botted.png" width="140px"></div>
@@ -29,9 +24,7 @@ if(isset($_POST['submit'])){ //check if form was submitted
 		<input type="text" name="uname" placeholder="Username"><br><br>
 		<input type="submit" name="submit" value="Bot or Not?">
 	</form>
-		<div class="result">
-	<?php echo nl2br($output); ?>
-		</div>
+	<div class="result"></div>
 	</div>
 </body>
 </html>
