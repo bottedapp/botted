@@ -14,15 +14,11 @@ body {
      height: auto;
      text-align: center;
 }
- input[type=text]:focus {
-     background-color: lightblue;
-}
  #form {
      text-align: center;
 }
  #uname {
      background: white;
-     padding: 20px;
      width: 300px;
      height: 30px;
      border-style: none;
