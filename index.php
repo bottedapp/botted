@@ -11,7 +11,7 @@
 	<link rel="icon" href="/favicon.ico">
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-	<link rel="stylesheet" href="css/stylesheet.css?v=1.0">
+	<link rel="stylesheet" href="/css/stylesheet.css?v=1.0">
 </head>
 <body>
 	<div class="top"><img src="/images/botted.png" width="200px"></div>
