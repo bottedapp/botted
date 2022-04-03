@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){ //check if form was submitted
 		<input type="submit" name="submit" value="Submit">
 	</form>
 		<div class="result">
-	<?php echo nl2br($output); ?>
+	<?php print nl2br($output); ?>
 		</div>
 	</div>
 </body>
