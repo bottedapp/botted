@@ -20,9 +20,9 @@
 <body>
 	<div class="top"><img src="/images/botted.png" width="140px"></div>
 	<div class="content"><img src="/images/bot.png" width="200px" align="center">
-	<form action="" id="form" method="post">
-		<input type="text" name="uname" placeholder="Username"><br><br>
-		<input type="submit" name="submit" value="Bot or Not?">
+	<form action="" class="form">
+		<input type="text" name="uname" class="uname" placeholder="Username"><br><br>
+		<input type="submit" name="submit" class="submit" value="Bot or Not?">
 	</form>
 	<div class="result"></div>
 	</div>
