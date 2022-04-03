@@ -21,7 +21,6 @@
 	<?php
 		$output = passthru("python botted.py treep");
 		echo $output;
-		echo "hi";
 	?>
 </body>
 </html>
