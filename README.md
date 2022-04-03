@@ -1,2 +1,2 @@
-# master
+# botted
 botted heroku app
