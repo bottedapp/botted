@@ -1,3 +1,10 @@
+<?php
+$output = "";
+if(isset($_POST['submit'])){ //check if form was submitted
+  $input = $_POST['uname']; //get input text
+  $output = passthru("python botted.py ". $input);
+}    
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,11 +23,8 @@
 	<div class="content"><img src="/images/bot.png" width="200px" align="center"></div>
 	<form action="/action.php" id="form">
 		<input type="text" id="uname" name="uname" placeholder="Username"><br><br>
-		<input type="submit" value="Submit">
+		<input type="submit" name="submit" value="Submit">
 	</form>
-	<?php
-		$output = passthru("python botted.py poopy");
-		echo $output;
-	?>
+	<?php echo $output; ?>
 </body>
 </html>
