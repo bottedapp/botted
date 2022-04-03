@@ -1,7 +1,3 @@
-<?php
-	$output = passthru('python botted.py idiotic');
-	 echo $output;
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,5 +18,10 @@
 		<input type="text" id="uname" name="uname" placeholder="Username"><br><br>
 		<input type="submit" value="Submit">
 	</form>
+	<?php
+		$output = passthru("python botted.py idiotic");
+		echo $output;
+		echo "hi";
+	?>
 </body>
 </html>
