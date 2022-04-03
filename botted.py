@@ -34,6 +34,6 @@ TotalSimilarities = []
 for Index, Item in enumerate(Similarities):
     TotalSimilarities.append(sum(SimilaritiesValues[Index]) / len(SimilaritiesValues[Index]))
 try:
-    print("score:",sum(TotalSimilarities) / len(TotalSimilarities))
+    print(sum(TotalSimilarities) / len(TotalSimilarities))
 except ZeroDivisionError:
-    print("score:",0.0)
+    print(0.0)
