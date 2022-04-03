@@ -19,7 +19,7 @@
 </head>
 <body>
 	<div class="top"><img src="/images/botted.png" width="140px"></div>
-	<div class="content"><img src="/images/bot.png" width="200px" align="center">
+	<div class="content"><img src="/images/bot.png" width="200px" align="center"><br>
 	<input type="text" name="uname" class="uname" placeholder="Username"><br><br>
 	<input type="submit" name="submit" class="submit" value="Bot or Not?">
 	<div class="result"></div>
