@@ -20,11 +20,12 @@ if(isset($_POST['submit'])){ //check if form was submitted
 </head>
 <body>
 	<div class="top"><img src="/images/botted.png" width="140px"></div>
-	<div class="content"><img src="/images/bot.png" width="200px" align="center"></div>
+	<div class="content"><img src="/images/bot.png" width="200px" align="center">
 	<form action="" id="form" method="post">
 		<input type="text" id="uname" name="uname" placeholder="Username"><br><br>
 		<input type="submit" name="submit" value="Submit">
 	</form>
 	<?php echo $output; ?>
+	</div>
 </body>
 </html>
