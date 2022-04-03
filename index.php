@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){ //check if form was submitted
 	<div class="content"><img src="/images/bot.png" width="200px" align="center">
 	<form action="" id="form" method="post">
 		<input type="text" name="uname" placeholder="Username"><br><br>
-		<input type="submit" name="submit" value="Submit">
+		<input type="submit" name="submit" value="Bot or Not?">
 	</form>
 		<div class="result">
 	<?php echo nl2br($output); ?>
