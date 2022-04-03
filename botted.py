@@ -13,5 +13,5 @@ username = sys.argv[1]
 print(username,"\n")
 i = 1
 for item in Reddit.redditor(username).comments.new(limit=10):
-    print(f"comment {i}:", item.body, "\n")
+    print(f"comment {i}:", item.body, "<br>")
     i += 1
