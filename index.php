@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){ //check if form was submitted
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>botted</title>
+	<title>Botted - Spot Reddit Bots</title>
 	<meta name="description" content="botted app">
 	<meta name="author" content="">
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
@@ -26,11 +26,11 @@ if(isset($_POST['submit'])){ //check if form was submitted
 	<div class="top"><img src="/images/botted.png" width="140px"></div>
 	<div class="content"><img src="/images/bot.png" width="200px" align="center">
 	<form action="" id="form" method="post">
-		<input type="text" id="uname" name="uname" placeholder="Username"><br><br>
+		<input type="text" name="uname" placeholder="Username"><br><br>
 		<input type="submit" name="submit" value="Submit">
 	</form>
 		<div class="result">
-	<?php print nl2br($output); ?>
+	<?php echo nl2br($output); ?>
 		</div>
 	</div>
 </body>
