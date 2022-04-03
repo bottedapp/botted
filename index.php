@@ -8,10 +8,10 @@
 	<title>botted</title>
 	<meta name="description" content="botted app">
 	<meta name="author" content="">
-	<link rel="icon" href="/favicon.ico">
-	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-	<link rel="stylesheet" href="/css/stylesheet.css?v=1.0">
+	<link rel="icon" href="/images/favicon.ico">
+	<link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+	<link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 <body>
 	<div class="top"><img src="/images/botted.png" width="200px"></div>
