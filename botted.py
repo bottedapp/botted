@@ -12,7 +12,7 @@ Reddit = praw.Reddit(
 username = sys.argv[1]
 for item in Reddit.redditor(username).comments.new(limit=10):
     print(item.body)
-
+"""
 # Credit https://pastebin.com/wiAByySP
 Similarities = {}
 for Index, Comment in enumerate(Reddit.redditor(username).comments.new(limit=10)):
@@ -34,4 +34,5 @@ try:
     print(sum(TotalSimilarities) / len(TotalSimilarities))
 except ZeroDivisionError:
     print(0.0)
+"""
     print(username)
