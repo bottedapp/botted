@@ -36,7 +36,7 @@ for submission in redditor.submissions.new(limit=1):
     print("url:", submission.url)
     print("\n")
 
-    #print("comments:", submission.comments)
-    #print("link flair id:", submission.link_flair_template_id)
-    #print("link flair text:", submission.link_flair_text)
-    #print("poll:", submission.poll_data)
+    # print("comments:", submission.comments)
+    # print("link flair id:", submission.link_flair_template_id)
+    # print("link flair text:", submission.link_flair_text)
+    # print("poll:", submission.poll_data)
