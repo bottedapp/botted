@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 	var $username;
 	$('.submit').click(function() {
         $username = $( ".uname" ).val();
-	$( ".result" ).html("<img src="/images/loading.gif">");
+	$( ".result" ).html('<img src="/images/loading.gif">');
         query();
     	});
 
