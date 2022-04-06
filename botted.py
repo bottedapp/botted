@@ -11,6 +11,8 @@ Reddit = praw.Reddit(
 )
 username = sys.argv[1]
 
+print("username:", redditor.name)
+
 # Credit https://pastebin.com/wiAByySP
 Similarities = {}
 for Index, Comment in enumerate(Reddit.redditor(username).comments.new(limit=10)):
@@ -29,6 +31,13 @@ TotalSimilarities = []
 for Index, Item in enumerate(Similarities):
     TotalSimilarities.append(sum(SimilaritiesValues[Index]) / len(SimilaritiesValues[Index]))
 try:
-    print(username + " score: ", sum(TotalSimilarities) / len(TotalSimilarities))
+    score = sum(TotalSimilarities) / len(TotalSimilarities))
 except ZeroDivisionError:
-    print(username + " score: ",0.0)
+    score = 0.0
+
+if score >= 0.5:
+    print("is a bot")
+if score > 0.2 and score < 0.5:
+    print("might be a bot")
+if score =< 0.2:
+    print("is a human")
