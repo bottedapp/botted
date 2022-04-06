@@ -41,6 +41,6 @@ if score >= 0.5:
 if score > 0.2 and score < 0.5:
     print(redditor.name,"might be a bot")
     print("score: ",score)
-if score =< 0.2:
+if score <= 0.2:
     print(redditor.name,"is a human")
     print("score: ",score)
