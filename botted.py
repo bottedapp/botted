@@ -37,10 +37,10 @@ except ZeroDivisionError:
 
 if score >= 0.5:
     print(redditor.name,"is a bot")
-    print("score: ",score)
+    print("<br>score: ",score)
 if score > 0.2 and score < 0.5:
     print(redditor.name,"might be a bot")
-    print("score: ",score)
+    print("<br>score: ",score)
 if score <= 0.2:
     print(redditor.name,"is a human")
-    print("score: ",score)
+    print("<br>score: ",score)
