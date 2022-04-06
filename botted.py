@@ -10,11 +10,6 @@ Reddit = praw.Reddit(
     user_agent="botted 0.0.1",
 )
 username = sys.argv[1]
-print(username,"comments<br>")
-i = 1
-for item in Reddit.redditor(username).comments.new(limit=10):
-    print(f"comment {i}:", item.body, "<br>")
-    i += 1
 
 # Credit https://pastebin.com/wiAByySP
 Similarities = {}
@@ -34,6 +29,6 @@ TotalSimilarities = []
 for Index, Item in enumerate(Similarities):
     TotalSimilarities.append(sum(SimilaritiesValues[Index]) / len(SimilaritiesValues[Index]))
 try:
-    print(sum(TotalSimilarities) / len(TotalSimilarities))
+    print(username + " score: ", sum(TotalSimilarities) / len(TotalSimilarities))
 except ZeroDivisionError:
-    print(0.0)
+    print(username + " score: ",0.0)
