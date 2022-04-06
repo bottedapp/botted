@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
 				cache:false,
 				success: function(data)
 				{
-				    $( ".result" ).html('<h1 style="font-family:system-ui;color:#ffffff;">'.data.'</h1>');
+				    $( ".result" ).html('<h1 style="font-family:system-ui;color:#ffffff;">' + data + '</h1>');
 				}
 		});  
 	}
