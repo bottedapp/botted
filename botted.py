@@ -11,7 +11,7 @@ Reddit = praw.Reddit(
 )
 username = sys.argv[1]
 
-print("username:", redditor.name)
+redditor = reddit.redditor(redditor_name)
 
 # Credit https://pastebin.com/wiAByySP
 Similarities = {}
@@ -36,8 +36,11 @@ except ZeroDivisionError:
     score = 0.0
 
 if score >= 0.5:
-    print("is a bot")
+    print(redditor.name,"is a bot")
+    print("score: ",score)
 if score > 0.2 and score < 0.5:
-    print("might be a bot")
+    print(redditor.name,"might be a bot")
+    print("score: ",score)
 if score =< 0.2:
-    print("is a human")
+    print(redditor.name,"is a human")
+    print("score: ",score)
