@@ -11,8 +11,17 @@ public class Comment extends User {
     private int commentSubredditCount = 0;
     private ArrayList commentSubreddits = new ArrayList<>();
 
-    public Comment(String subreddit, String name, String id, String user, String input, String result, Boolean verified, Boolean has_verified_email, Boolean is_gold, Boolean is_mod, Boolean is_employee, int awardee_karma, int awarder_karma, int link_karma, int comment_karma, int total_karma, Date created, String comment, boolean upvote, boolean downvote, double commentTotalScore, String popularCommentSubreddit, int commentSubredditCount, ArrayList commentSubreddits) {
-        super(subreddit, name, id, user, input, result, verified, has_verified_email, is_gold, is_mod, is_employee, awardee_karma, awarder_karma, link_karma, comment_karma, total_karma, created, comment, upvote, downvote);
+    public Comment() throws IOException, InterruptedException {
+        super();
+    }
+
+    public Comment(String user) throws IOException, InterruptedException {
+        super(user);
+        analyzeComment();
+    }
+
+    public Comment(String subreddit, String name, String id, String user, Boolean verified, Boolean has_verified_email, Boolean is_gold, Boolean is_mod, Boolean is_employee, int awardee_karma, int awarder_karma, int link_karma, int comment_karma, int total_karma, Date created, String comment, boolean upvote, boolean downvote, double commentTotalScore, String popularCommentSubreddit, int commentSubredditCount, ArrayList commentSubreddits) throws IOException {
+        super(subreddit, name, id, user, verified, has_verified_email, is_gold, is_mod, is_employee, awardee_karma, awarder_karma, link_karma, comment_karma, total_karma, created, comment, upvote, downvote);
         this.commentTotalScore = commentTotalScore;
         this.popularCommentSubreddit = popularCommentSubreddit;
         this.commentSubredditCount = commentSubredditCount;
