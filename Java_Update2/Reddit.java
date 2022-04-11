@@ -24,7 +24,7 @@ public class Reddit {
         ensureConnection();
     }
 
-    public Reddit(String subreddit) throws IOException {
+    public Reddit(String subreddit) throws IOException, InterruptedException {
         this.subreddit = subreddit;
         ensureConnection();
     }
@@ -42,22 +42,22 @@ public class Reddit {
     }
 
     public void connect() throws IOException {
-            // Get access token
-            Connection conn = Jsoup.connect(BASE_URL + "/api/v1/access_token").ignoreContentType(true).ignoreHttpErrors(true).method(Method.POST).userAgent(userAgent);
-            conn.data("grant_type", "client_credentials");
+        // Get access token
+        Connection conn = Jsoup.connect(BASE_URL + "/api/v1/access_token").ignoreContentType(true).ignoreHttpErrors(true).method(Method.POST).userAgent(userAgent);
+        conn.data("grant_type", "client_credentials");
 
-            // Generate the Authorization header
-            String combination = clientId + ":" + clientSecret;
-            combination = Base64.getEncoder().encodeToString(combination.getBytes());
-            conn.header("Authorization", "Basic " + combination);
+        // Generate the Authorization header
+        String combination = clientId + ":" + clientSecret;
+        combination = Base64.getEncoder().encodeToString(combination.getBytes());
+        conn.header("Authorization", "Basic " + combination);
 
-            // Open the connection and get response from server
-            Response res = conn.execute();
-            JsonObject object = JsonParser.parseString(res.body()).getAsJsonObject();
+        // Open the connection and get response from server
+        Response res = conn.execute();
+        JsonObject object = JsonParser.parseString(res.body()).getAsJsonObject();
 
-            // Set access token and expiration time
-            this.token = object.get("access_token").getAsString();
-            this.expirationDate = object.get("expires_in").getAsInt() + Instant.now().getEpochSecond();
+        // Set access token and expiration time
+        this.token = object.get("access_token").getAsString();
+        this.expirationDate = object.get("expires_in").getAsInt() + Instant.now().getEpochSecond();
     }
 
     public JsonObject useEndpoint(String endpointPath) throws IOException, InterruptedException {
@@ -114,7 +114,7 @@ public class Reddit {
             String[] c = input.split(".com/");
             String[] d = c[1].split("/");
             if (d.length <= 5) // submission
-            endpoint = "/r/" + d[1] + "/comments/" + d[3];
+                endpoint = "/r/" + d[1] + "/comments/" + d[3];
             JsonArray submissionInfo = useEndpointSubmission(endpoint);
             JsonObject array0 = submissionInfo.get(0).getAsJsonObject();
             JsonObject submissionData = (JsonObject) array0.getAsJsonObject().get("data");
@@ -176,5 +176,5 @@ public class Reddit {
                 ", subreddit='" + subreddit + '\'' +
                 '}';
     }
-    
+
 }
