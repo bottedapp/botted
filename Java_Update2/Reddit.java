@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.Connection;
 import org.jsoup.Connection.Method;
@@ -16,12 +16,17 @@ public class Reddit {
     private final String clientId = "GgPNctP2KQdth-iX6aMGUQ";
     private final String clientSecret = "6zov1gDWJ8Ij60yH3L7q6N_LnPUZHA";
     private final String userAgent = "botted 0.0.1";
-    private final String token = null;
+    private String token;
     private long expirationDate;
     protected String subreddit;
 
-    public Reddit(String subreddit) {
+    public Reddit() throws IOException, InterruptedException {
+        ensureConnection();
+    }
+
+    public Reddit(String subreddit) throws IOException {
         this.subreddit = subreddit;
+        ensureConnection();
     }
 
     //getters
@@ -37,22 +42,22 @@ public class Reddit {
     }
 
     public void connect() throws IOException {
-        // Get access token
-        Connection conn = Jsoup.connect(BASE_URL + "/api/v1/access_token").ignoreContentType(true).ignoreHttpErrors(true).method(Method.POST).userAgent(userAgent);
-        conn.data("grant_type", "client_credentials");
+            // Get access token
+            Connection conn = Jsoup.connect(BASE_URL + "/api/v1/access_token").ignoreContentType(true).ignoreHttpErrors(true).method(Method.POST).userAgent(userAgent);
+            conn.data("grant_type", "client_credentials");
 
-        // Generate the Authorization header
-        String combination = clientId + ":" + clientSecret;
-        combination = Base64.getEncoder().encodeToString(combination.getBytes());
-        conn.header("Authorization", "Basic " + combination);
+            // Generate the Authorization header
+            String combination = clientId + ":" + clientSecret;
+            combination = Base64.getEncoder().encodeToString(combination.getBytes());
+            conn.header("Authorization", "Basic " + combination);
 
-        // Open the connection and get response from server
-        Response res = conn.execute();
-        JsonObject object = JsonParser.parseString(res.body()).getAsJsonObject();
+            // Open the connection and get response from server
+            Response res = conn.execute();
+            JsonObject object = JsonParser.parseString(res.body()).getAsJsonObject();
 
-        // Set access token and expiration time
-        this.token = object.get("access_token").getAsString();
-        this.expirationDate = object.get("expires_in").getAsInt() + Instant.now().getEpochSecond();
+            // Set access token and expiration time
+            this.token = object.get("access_token").getAsString();
+            this.expirationDate = object.get("expires_in").getAsInt() + Instant.now().getEpochSecond();
     }
 
     public JsonObject useEndpoint(String endpointPath) throws IOException, InterruptedException {
@@ -78,20 +83,22 @@ public class Reddit {
     public void ensureConnection() throws IOException, InterruptedException, AuthenticationException {
         // There is no token
         if (token == null) {
-            new Reddit(subreddit);
+            connect();
         }
         // The token is expired
         if (Instant.now().getEpochSecond() > expirationDate) {
-            new Reddit(subreddit);
+            connect();
         }
     }
-    
+
     /**
      * Get username from input valie
      * @returns username
      */
-    public String getUser(String input) {
-                if (!input.contains("/")) {
+    public String readInput(String input) throws IOException, InterruptedException {
+        String user = "";
+        String endpoint = "";
+        if (!input.contains("/")) {
             user = input;
         }
         if (input.startsWith("t2_")) {
@@ -106,22 +113,19 @@ public class Reddit {
         if (input.contains("/comments/") && !input.contains("/comment/")) {
             String[] c = input.split(".com/");
             String[] d = c[1].split("/");
-            String endpoint;
-            if (d.length <= 5)
-                result = "submission";
-                endpoint = "/r/" + d[1] + "/comments/" + d[3];
-                JsonArray submissionInfo = useEndpointSubmission(endpoint);
-                JsonObject array0 = submissionInfo.get(0).getAsJsonObject();
-                JsonObject submissionData = (JsonObject) array0.getAsJsonObject().get("data");
-                JsonArray submissionChildren = submissionData.getAsJsonArray("children");
-                for (JsonElement items : submissionChildren) {
-                    JsonObject data3 = (JsonObject) items.getAsJsonObject().get("data");
-                    String author = String.valueOf(data3.getAsJsonObject().get("author"));
-                    user = author.replace("\"", "");
-                }
+            if (d.length <= 5) // submission
+            endpoint = "/r/" + d[1] + "/comments/" + d[3];
+            JsonArray submissionInfo = useEndpointSubmission(endpoint);
+            JsonObject array0 = submissionInfo.get(0).getAsJsonObject();
+            JsonObject submissionData = (JsonObject) array0.getAsJsonObject().get("data");
+            JsonArray submissionChildren = submissionData.getAsJsonArray("children");
+            for (JsonElement items : submissionChildren) {
+                JsonObject data3 = (JsonObject) items.getAsJsonObject().get("data");
+                String author = String.valueOf(data3.getAsJsonObject().get("author"));
+                user = author.replace("\"", "");
+            }
 
-            if (d.length >= 6) {
-                result = "comment";
+            if (d.length >= 6) { // comment
                 endpoint = "/r/" + d[1] + "/api/info?id=t1_" + d[5];
                 JsonObject info = useEndpoint(endpoint);
                 JsonObject data = info.getAsJsonObject("data");
@@ -134,13 +138,12 @@ public class Reddit {
             }
         }
 
-        if (input.contains("/comments/") && input.contains("/comment/")) {
-            result = "comment";
+        if (input.contains("/comments/") && input.contains("/comment/")) { // comment
             String[] a = input.split("/r/");
             String[] subreddit = a[1].split("/");
             String[] b = input.split("/comment/");
             String[] commentId = b[1].split("/");
-            String endpoint = "/r/" + subreddit[0] + "/api/info?id=t1_" + commentId[0];
+            endpoint = "/r/" + subreddit[0] + "/api/info?id=t1_" + commentId[0];
             JsonObject info = useEndpoint(endpoint);
             JsonObject data = info.getAsJsonObject("data");
             JsonArray children = data.getAsJsonArray("children");
@@ -151,6 +154,13 @@ public class Reddit {
             }
         }
         return user;
+    }
+
+    public static double findSimilarity(String x, String y) {
+        double maxLength = Double.max(x.length(), y.length());
+        if (maxLength > 0)
+            return (maxLength - StringUtils.getLevenshteinDistance(x, y)) / maxLength;
+        return 0.0;
     }
 
     @Override
@@ -166,5 +176,5 @@ public class Reddit {
                 ", subreddit='" + subreddit + '\'' +
                 '}';
     }
-
+    
 }
