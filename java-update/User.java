@@ -4,16 +4,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class User extends Reddit {
-    protected String user = "eminem_bot";
+public class User extends Input {
     protected String name, id;
     protected Boolean verified, has_verified_email, is_gold, is_mod, is_employee;
     protected int awardee_karma, awarder_karma, link_karma, comment_karma, total_karma;
     protected Date created;
     private final SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");
 
-    public User() throws IOException, InterruptedException {
-        JsonObject about = useEndpoint("/user/" + user + "/about");
+    public User(String user) throws IOException, InterruptedException {
+        JsonObject about = useEndpoint("/user/" + user +"/about");
         JsonObject data = (JsonObject) about.get("data");
         //User Info
         name = String.valueOf(data.get("name"));
@@ -39,9 +38,9 @@ public class User extends Reddit {
             return (maxLength - StringUtils.getLevenshteinDistance(x, y)) / maxLength;
         return 0.0;
     }
-
+    @Override
     public String getUser() {
-        return user;
+        return super.user;
     }
 
     @Override
