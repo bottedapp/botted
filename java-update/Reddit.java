@@ -48,6 +48,13 @@ public class Reddit {
         return JsonParser.parseString(connection.execute().body()).getAsJsonObject();
     }
 
+    public JsonArray useEndpointSubmission(String endpointPath) throws IOException, InterruptedException {
+        ensureConnection();
+        Connection connection = Jsoup.connect(OAUTH_URL + endpointPath);
+        connection.header("Authorization", "bearer " + token).ignoreContentType(true).userAgent(userAgent);
+        return JsonParser.parseString(connection.execute().body()).getAsJsonArray();
+    }
+
     /**
      * Ensure the connection is Authenticated
      * @throws IOException
