@@ -11,8 +11,9 @@ public class Submissions extends User {
     private int submissionSubredditCount, freeKarma = 0;
     private ArrayList commentSubreddits = new ArrayList();
 
-    public Submissions() throws IOException, InterruptedException {
-        JsonObject submitted = useEndpoint("/user/" + getUser() + "/submitted");
+    public Submissions(String user) throws IOException, InterruptedException {
+        super(user);
+        JsonObject submitted = useEndpoint("/user/" + user + "/submitted");
         JsonObject data = (JsonObject) submitted.get("data");
         JsonArray children = (JsonArray) data.get("children");
 
