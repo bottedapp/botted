@@ -1,10 +1,14 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Human extends User {
 
     private boolean human;
+    public Human() throws IOException, InterruptedException {
+        super();
 
-    public Human(String subreddit, String comment, boolean upvote, boolean downvote, boolean human) {
+    }
+    public Human(String subreddit, String comment, boolean upvote, boolean downvote, boolean human) throws IOException, InterruptedException {
         super(subreddit, comment, upvote, downvote);
         this.human = human;
     }
