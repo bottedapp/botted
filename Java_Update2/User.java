@@ -1,11 +1,7 @@
 import com.google.gson.JsonObject;
-import org.apache.commons.lang3.StringUtils;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 
 public class User extends Reddit {
 
@@ -18,7 +14,24 @@ public class User extends Reddit {
     private boolean upvote;
     private boolean downvote;
 
-    public User(String subreddit, String name, String id, String user, String input, String result, Boolean verified, Boolean has_verified_email, Boolean is_gold, Boolean is_mod, Boolean is_employee, int awardee_karma, int awarder_karma, int link_karma, int comment_karma, int total_karma, Date created, String comment, boolean upvote, boolean downvote) {
+    public User() throws IOException, InterruptedException {
+        super();
+        this.user = "spez";
+    }
+
+    public User(String user) throws IOException, InterruptedException {
+        this.user = user;
+        value(user);
+    }
+
+    public User(String subreddit, String comment, boolean upvote, boolean downvote) throws IOException, InterruptedException { // human
+        super();
+        this.subreddit = subreddit;
+        this.comment = comment;
+        this.upvote = upvote;
+        this.downvote = downvote;
+    }
+    public User(String subreddit, String name, String id, String user, Boolean verified, Boolean has_verified_email, Boolean is_gold, Boolean is_mod, Boolean is_employee, int awardee_karma, int awarder_karma, int link_karma, int comment_karma, int total_karma, Date created, String comment, boolean upvote, boolean downvote) throws IOException {
         super(subreddit);
         this.name = name;
         this.id = id;
