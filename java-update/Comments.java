@@ -11,8 +11,9 @@ public class Comments extends User {
     private int commentSubredditCount = 0;
     private ArrayList commentSubreddits = new ArrayList<>();
 
-    public Comments() throws IOException, InterruptedException {
-        JsonObject comments = useEndpoint("/user/" + getUser() + "/comments");
+    public Comments(String user) throws IOException, InterruptedException {
+        super(user);
+        JsonObject comments = useEndpoint("/user/" + user + "/comments");
         JsonObject data = comments.getAsJsonObject("data");
         JsonArray children = data.getAsJsonArray("children");
 
