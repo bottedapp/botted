@@ -14,6 +14,11 @@ public class User extends Reddit {
     private boolean upvote;
     private boolean downvote;
 
+    /**
+     * Stuff
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public User() throws IOException, InterruptedException {
         super();
         this.user = "spez";
