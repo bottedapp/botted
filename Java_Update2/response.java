@@ -19,7 +19,7 @@ public class response {
     private final String clientSecret = "BJFz2IB-EMvu_ye3EZ66oOcoDzWgwg";
     private final String userAgent = "botted 0.0.1";
     private final String username = "bottedapp";
-    private final String password = "mc3.edu!";
+    private final String password = "************";
     private String token;
     private long expirationDate;
     protected String subreddit;
