@@ -180,13 +180,4 @@ public class Subreddit extends RedditComponent {
                 '}';
     }
 
-    /**
-     * Return correct response according to results
-     * @param keyPhrase Phrase to signal to our bot for an action
-     * @return Response
-     */
-    public String getResponse(String[] keyPhrase) {
-        return "Submission class - Insert response here.";
-    }
-
 }
