@@ -269,6 +269,22 @@ public class UserAccount extends RedditComponent {
         comment_karma = Integer.parseInt(String.valueOf(data.get("comment_karma")));
         total_karma = Integer.parseInt(String.valueOf(data.get("total_karma")));
     }
+    
+        /**
+     * Return correct response according to results
+     * @param keyPhrase Phrase to signal to our bot for an action
+     * @return
+     */
+    public String responses(ArrayList<String> keyPhrase) {
+
+        String response = keyPhrase.get(2);
+
+        return response;
+    }
+
+    public static Object responses() {
+        return responses();
+    }
 
     /**
      * Send results to string
