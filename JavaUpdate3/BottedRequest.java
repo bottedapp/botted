@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BottedRequest {
@@ -110,4 +111,46 @@ public class BottedRequest {
         connection.header("Authorization", "bearer " + token).ignoreContentType(true).userAgent(userAgent);
         return JsonParser.parseString(connection.execute().body()).getAsJsonObject();
     }
+
+    public void replyComment() throws IOException, InterruptedException {
+
+        List<Comment> comments = userComments().updateNew(100).getComments();
+
+        for (Comment comment: comments)  {
+            if (getBody(String.valueOf(comment)).contains("u/botted"))  {
+                driver run = new driver();
+                HumanAccount human = new HumanAccount();
+                BotAccount bot = new BotAccount();
+                    if (human.isHuman() == true) {
+                        BottedRequest.reply(HumanAccount.responses());
+                    }
+                    else if (bot.isBot() == true) {
+                        BottedRequest.reply(BotAccount.responses());
+                    }
+                    else {
+                        BottedRequest.reply("Hi! Thank you for summoning me! Hm... my apologies, for some reason I am unsure whether or not this account is run by a bot." +
+                                "Here is a link to my webpage if you would like a more detailed analysis!" +
+                                "\nhttps://botted.app/");
+                    }
+            }
+            else {
+                //do nothing
+            }
+        }
+    }
+
+    public String userComments(String comment) {
+        //send request to reddit backend for comments
+        return comment;
+    }
+
+    public String getBody(String comment) {
+        //send request to reddit backend for comment contents
+        return userComments(comment);
+    }
+
+    public static void reply(Object responses) {
+        //send reply to reddit backend
+    }
+
 }
