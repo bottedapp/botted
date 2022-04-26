@@ -12,10 +12,12 @@ public class driver {
     public static void main(String[] args) throws IOException, InterruptedException {
         //Array list of responses
         ArrayList keyPhrase = new ArrayList();
-        keyPhrase.add("This is a good bot!");
-        keyPhrase.add("This is a bad bot!");
-        keyPhrase.add("This is a human!");
-        keyPhrase.add("Undetermined.");
+        keyPhrase.add("Hi! Thank you for summoning me! It would appear that this account is run by a bot!" +
+                "Here is a link to my webpage if you would like a more detailed analysis!" +
+                "\nhttps://botted.app/");
+        keyPhrase.add("Hi! Thank you for summoning me! It would appear that this account is run by a human!" +
+                "Here is a link to my webpage if you would like a more detailed analysis!" +
+                "\nhttps://botted.app/");
 
         //Creating class objects to run program
         Scanner scan = new Scanner(System.in);
