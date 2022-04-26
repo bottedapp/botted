@@ -128,9 +128,7 @@ public class BottedRequest {
                         BottedRequest.reply(BotAccount.responses());
                     }
                     else {
-                        BottedRequest.reply("Hi! Thank you for summoning me! Hm... my apologies, for some reason I am unsure whether or not this account is run by a bot." +
-                                "Here is a link to my webpage if you would like a more detailed analysis!" +
-                                "\nhttps://botted.app/");
+                        BottedRequest.reply(UserAccount.responses());
                     }
             }
             else {
