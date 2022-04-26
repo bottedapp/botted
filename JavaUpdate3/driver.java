@@ -18,6 +18,9 @@ public class driver {
         keyPhrase.add("Hi! Thank you for summoning me! It would appear that this account is run by a human!" +
                 "Here is a link to my webpage if you would like a more detailed analysis!" +
                 "\nhttps://botted.app/");
+        keyPhrase.add("Hi! Thank you for summoning me! Hm... my apologies, for some reason I am unsure whether or not this account is run by a bot." +
+                "Here is a link to my webpage if you would like a more detailed analysis!" +
+                "\nhttps://botted.app/");
 
         //Creating class objects to run program
         Scanner scan = new Scanner(System.in);
