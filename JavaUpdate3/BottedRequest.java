@@ -5,12 +5,15 @@ import com.google.gson.JsonParser;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.Instant;
-import java.util.Base64;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.*;
 
 public class BottedRequest {
 
@@ -20,7 +23,7 @@ public class BottedRequest {
     private final String clientSecret = "BJFz2IB-EMvu_ye3EZ66oOcoDzWgwg";
     private final String userAgent = "botted 0.0.1";
     private final String username = "bottedapp";
-    private final String password = "************";
+    private final String password = "mc3.edu!";
     private String token;
     private long expirationDate;
     protected String subreddit;
@@ -29,6 +32,21 @@ public class BottedRequest {
         BottedRequest r = new BottedRequest();
         r.userConnect();
         r.analyze();
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    r.replyComment();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task, new Date(), 5 * 60 * 1000);
+        r.commentConnect();
     }
 
     //getters
@@ -114,11 +132,13 @@ public class BottedRequest {
 
     public void replyComment() throws IOException, InterruptedException {
 
-        List<Comment> comments = userComments().updateNew(100).getComments();
+        List<String> comments = new ArrayList<>();
+        comments.add(userComments(String.valueOf(comments)));
 
-        for (Comment comment: comments)  {
-            if (getBody(String.valueOf(comment)).contains("u/botted"))  {
+        for (String comment: comments)  {
+            if (userComments(String.valueOf(comment)).contains("u/botted"))  {
                 driver run = new driver();
+                run.main(null);
                 HumanAccount human = new HumanAccount();
                 BotAccount bot = new BotAccount();
                     if (human.isHuman() == true) {
@@ -137,18 +157,58 @@ public class BottedRequest {
         }
     }
 
-    public String userComments(String comment) {
-        //send request to reddit backend for comments
-        return comment;
-    }
-
-    public String getBody(String comment) {
-        //send request to reddit backend for comment contents
-        return userComments(comment);
+    public String userComments(String comments) throws IOException {
+        boolean error = false;
+        String read = null;
+        URL getReqURL = new URL(BASE_URL + "/r/" + subreddit + "/comments/");
+        HttpURLConnection connection = (HttpURLConnection) getReqURL.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty(username, password);
+        int response = connection.getResponseCode();
+        if (response == HttpURLConnection.HTTP_OK) {
+            InputStreamReader inputObject = new InputStreamReader(connection.getInputStream());
+            BufferedReader buff = new BufferedReader(inputObject);
+            StringBuffer commentLog = new StringBuffer();
+            while ((read = buff.readLine()) != null) {
+                commentLog.append(read);
+                comments = String.valueOf(commentLog);
+                return comments;
+            }
+            buff.close();
+            connection.disconnect();
+        }
+        else {
+            error = true;
+        }
+        return comments;
     }
 
     public static void reply(Object responses) {
         //send reply to reddit backend
+    }
+
+    public void commentConnect() throws IOException {
+        Connection connect = Jsoup.connect(OAUTH_URL + "/api/comment").ignoreContentType(true).ignoreHttpErrors(true).postDataCharset("UTF-8")
+                .data("api_type", "json")
+                .data("text", "test")
+                .data("thing_id", "t1_i5kycps");
+        connect.header("Authorization", "bearer " + token).userAgent(userAgent).post();
+    }
+    
+    @Override
+    public String toString() {
+        return "BottedRequest{" +
+                "BASE_URL='" + BASE_URL + '\'' +
+                ", OAUTH_URL='" + OAUTH_URL + '\'' +
+                ", clientId='" + clientId + '\'' +
+                ", clientSecret='" + clientSecret + '\'' +
+                ", userAgent='" + userAgent + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", token='" + token + '\'' +
+                ", expirationDate=" + expirationDate +
+                ", subreddit='" + subreddit + '\'' +
+                '}';
     }
 
 }
